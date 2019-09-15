@@ -1,0 +1,78 @@
+<div class="container">
+  <!-- Defining table structure -->
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Owner</th>
+          <th>Date of creation</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let data of repoList">
+          <tr (click)="openModal(data)">
+            <td>{{data.id}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.owner.login}}</td>
+            <td>{{data.created_at | date}}</td>
+            <td>{{data.score | scorePipe}}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <!-- /closing Defining table structure -->
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="d-none btn btn-primary" data-toggle="modal" id="showModal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+<!-- Defining modal popup -->
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Repo Detailss</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <ul class="list-unstyled">
+        <li>Id : </li>
+        <li>Name : </li>
+        <li>Owner : </li>
+        <li>Date of creation : </li>
+        <li>Score : </li>
+      </ul>
+   
+    </div>
+    <div class="modal-footer">
+      <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button> -->
+    </div>
+  </ng-template>
+
+
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
